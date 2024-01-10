@@ -56,7 +56,10 @@ namespace RegularTest
         private void ExpressionTest(object sender, EventArgs e)
         {
             richTextBox3.Clear();
-            richTextBox3.ForeColor = Color.Blue;
+            if (richTextBox3.ForeColor != Color.Blue)
+            {
+                richTextBox3.ForeColor = Color.Blue;
+            }
 
             string sourceText = richTextBox1.Text.Trim();
             string regularExpression = textBox1.Text.Trim();
@@ -72,7 +75,7 @@ namespace RegularTest
 
                 if (mathces.Count == 0)
                 {
-                    richTextBox3.AppendText("Совпадений не найдено!");
+                    richTextBox3.AppendText("No matches found...");
                     richTextBox3.ForeColor = Color.Blue;
                 }
                 else
