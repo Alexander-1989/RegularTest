@@ -9,8 +9,8 @@ namespace RegularTest.Service.Serializer
     public class Properties
     {
         public Point Location { get; set; } = new Point();
-        public string Text { get; set; } = string.Empty;
-        public string[] Items { get; set; } = new string[0];
+        public string TestString { get; set; } = string.Empty;
+        public string[] RegularExpressions { get; set; } = new string[0];
     }
 
     internal class Config

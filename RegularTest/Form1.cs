@@ -36,8 +36,8 @@ namespace RegularTest
         {
             config.ReadConfig();
             Location = config.Properties.Location;
-            richTextBox1.AppendText(config.Properties.Text);
-            comboBox1.Items.AddRange(config.Properties.Items);
+            richTextBox1.AppendText(config.Properties.TestString);
+            comboBox1.Items.AddRange(config.Properties.RegularExpressions);
             if (comboBox1.Items.Count > 0)
             {
                 comboBox1.SelectedIndex = 0;
@@ -48,8 +48,8 @@ namespace RegularTest
         {
             SaveItem();
             config.Properties.Location = Location;
-            config.Properties.Text = richTextBox1.Text;
-            config.Properties.Items = OfType<string>(comboBox1.Items);
+            config.Properties.TestString = richTextBox1.Text;
+            config.Properties.RegularExpressions = OfType<string>(comboBox1.Items);
             config.WriteConfig();
         }
 
