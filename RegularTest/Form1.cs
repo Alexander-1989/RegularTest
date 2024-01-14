@@ -24,9 +24,9 @@ namespace RegularTest
             List<T> resultList = new List<T>();
             foreach (object item in items)
             {
-                if (item is T)
+                if (item is T value)
                 {
-                    resultList.Add((T)item);
+                    resultList.Add(value);
                 }
             }
             return resultList.ToArray();
