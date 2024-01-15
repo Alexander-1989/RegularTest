@@ -19,7 +19,7 @@ namespace RegularTest
 
         private readonly Config config = new Config();
 
-        private static T[] OfType<T>(IEnumerable items)
+        private static T[] ToType<T>(IEnumerable items)
         {
             List<T> resultList = new List<T>();
             foreach (object item in items)
@@ -49,49 +49,44 @@ namespace RegularTest
             SaveItem();
             config.Properties.Location = Location;
             config.Properties.TestString = richTextBox1.Text;
-            config.Properties.RegularExpressions = OfType<string>(comboBox1.Items);
+            config.Properties.RegularExpressions = ToType<string>(comboBox1.Items);
             config.WriteConfig();
         }
 
         private void ExpressionTest(object sender, EventArgs e)
         {
             richTextBox3.Clear();
-            if (richTextBox3.ForeColor != Color.Blue)
-            {
-                richTextBox3.ForeColor = Color.Blue;
-            }
+            richTextBox3.ForeColor = Color.Blue;
 
             string sourceText = richTextBox1.Text.Trim();
             string regularExpression = textBox1.Text.Trim();
-            if (string.IsNullOrEmpty(sourceText) || string.IsNullOrEmpty(regularExpression))
+            if (!string.IsNullOrEmpty(sourceText) && !string.IsNullOrEmpty(regularExpression))
             {
-                return;
-            }
-
-            try
-            {
-                Regex reg = new Regex(regularExpression);
-                MatchCollection mathces = reg.Matches(sourceText);
-
-                if (mathces.Count == 0)
+                try
                 {
-                    richTextBox3.AppendText("No matches found...");
-                    richTextBox3.ForeColor = Color.Blue;
-                }
-                else
-                {
-                    richTextBox3.AppendText(mathces[0].Value);
-                    for (int i = 1; i < mathces.Count; i++)
+                    Regex reg = new Regex(regularExpression);
+                    MatchCollection mathces = reg.Matches(sourceText);
+
+                    if (mathces.Count == 0)
                     {
-                        richTextBox3.AppendText($"\n{mathces[i].Value}");
+                        richTextBox3.AppendText("No matches found...");
+                        richTextBox3.ForeColor = Color.Blue;
+                    }
+                    else
+                    {
+                        richTextBox3.AppendText(mathces[0].Value);
+                        for (int i = 1; i < mathces.Count; i++)
+                        {
+                            richTextBox3.AppendText($"\n{mathces[i].Value}");
+                        }
                     }
                 }
-            }
-            catch (Exception exc)
-            {
-                richTextBox3.ForeColor = Color.Red;
-                richTextBox3.AppendText(exc.Message);
-            }
+                catch (Exception exc)
+                {
+                    richTextBox3.ForeColor = Color.Red;
+                    richTextBox3.AppendText(exc.Message);
+                }
+            } 
         }
 
         private void AddItem()
