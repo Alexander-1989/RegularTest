@@ -38,7 +38,7 @@ namespace RegularTest.Service.Serializer
             }
         }
 
-        public void ReadConfig()
+        public void Read()
         {
             try
             {
@@ -53,7 +53,7 @@ namespace RegularTest.Service.Serializer
             catch (Exception) { }
         }
 
-        public void WriteConfig()
+        public void Write()
         {
             try
             {

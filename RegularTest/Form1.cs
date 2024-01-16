@@ -34,7 +34,7 @@ namespace RegularTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            config.ReadConfig();
+            config.Read();
             Location = config.Properties.Location;
             richTextBox1.AppendText(config.Properties.TestString);
             comboBox1.Items.AddRange(config.Properties.RegularExpressions);
@@ -50,7 +50,7 @@ namespace RegularTest
             config.Properties.Location = Location;
             config.Properties.TestString = richTextBox1.Text;
             config.Properties.RegularExpressions = ToType<string>(comboBox1.Items);
-            config.WriteConfig();
+            config.Write();
         }
 
         private void ExpressionTest(object sender, EventArgs e)
